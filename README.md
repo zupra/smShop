@@ -1,0 +1,2 @@
+# smShop
+nuxt + strapi
