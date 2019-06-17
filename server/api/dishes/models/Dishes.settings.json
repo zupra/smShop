@@ -1,8 +1,8 @@
 {
   "connection": "default",
-  "collectionName": "restaurants",
+  "collectionName": "dishes",
   "info": {
-    "name": "restaurant",
+    "name": "dishes",
     "description": ""
   },
   "options": {
@@ -20,26 +20,14 @@
     "description": {
       "type": "text"
     },
-    "images": {
+    "image": {
       "collection": "file",
       "via": "related",
       "plugin": "upload"
     },
-    "address": {
-      "type": "string"
-    },
-    "email": {
-      "type": "string"
-    },
-    "coordinates": {
-      "type": "json"
-    },
-    "phone": {
-      "type": "string"
-    },
-    "dishes": {
-      "collection": "dishes",
-      "via": "restaurant"
+    "restaurant": {
+      "model": "restaurant",
+      "via": "dishes"
     }
   }
 }

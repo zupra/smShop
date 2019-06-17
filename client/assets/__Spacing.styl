@@ -1,0 +1,13 @@
+// https // vuetifyjs.com/ru/framework/spacing
+sizes = { "1": .25rem, "2": .5rem, "3": 1rem, "4": 1.5rem, "5": 3rem }
+direction = { t: top, r: right, b: bottom, l: left }
+
+spacing_margin(sizes, direction)
+  for K, V in direction
+    &{K}
+      for key, val in sizes
+        &_{key}
+          margin-{V} val
+
+.m
+  spacing_margin(sizes, direction)
