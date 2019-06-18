@@ -5,8 +5,9 @@
 
   //- pre {{restaurants}}
 
+  //-
   .flex_wr
-    .Card.flex_col.Restauran(
+    .Card.flex_col.m_3(
       v-for="Restaurant in restaurants"
     )
       picture
@@ -14,7 +15,7 @@
           :src="`http://localhost:1337${Restaurant.images[0].url}`"
         )
       h4 {{Restaurant.name}}
-      
+
       NLink(
         :to="`/restaurants/${Restaurant.id}`"
       ) goTo
@@ -24,21 +25,41 @@
 </template>
 
 <script>
+import Strapi from 'strapi-sdk-javascript/build/main'
 const apiUrl = process.env.API_URL || 'http://localhost:1337'
+const strapi = new Strapi(apiUrl)
 export default {
   data() {
     return {
-      restaurants: []
+      // restaurants: []
     }
   },
   // components: {}
   async asyncData({ app }) {
-    // console.log('asyncData')
+    /*
     const restaurants = await app.$axios.$get(`${apiUrl}/restaurants`)
-    // await new Promise(resolve => setTimeout(() => resolve(), 2000))
     return {
       restaurants
     }
+    */
+
+    const restaurants = await strapi.request('post', '/graphql', {
+      data: {
+        query: `
+        query {
+          restaurants {
+            id,
+            name,
+            description,
+            images {
+              url
+            }
+          }
+        }
+        `
+      }
+    })
+    return { ...restaurants.data }
   },
   async mounted() {
     await new Promise(resolve => setTimeout(() => resolve(), 10000))
@@ -46,10 +67,4 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-
-.Restauran
-  margin: 1em;
-  // &_name
-  // &_description
-</style>
+<style lang="stylus"></style>
