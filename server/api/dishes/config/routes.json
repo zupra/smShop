@@ -18,7 +18,7 @@
     },
     {
       "method": "GET",
-      "path": "/dishes/:id",
+      "path": "/dishes/:_id",
       "handler": "Dishes.findOne",
       "config": {
         "policies": []
@@ -34,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/dishes/:id",
+      "path": "/dishes/:_id",
       "handler": "Dishes.update",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/dishes/:id",
+      "path": "/dishes/:_id",
       "handler": "Dishes.delete",
       "config": {
         "policies": []

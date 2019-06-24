@@ -1,17 +1,12 @@
 {
   "connection": "default",
-  "collectionName": "restaurants",
+  "collectionName": "",
   "info": {
-    "name": "restaurant",
+    "name": "restaurants",
     "description": ""
   },
   "options": {
-    "increments": true,
-    "timestamps": [
-      "created_at",
-      "updated_at"
-    ],
-    "comment": ""
+    "timestamps": true
   },
   "attributes": {
     "name": {
@@ -19,11 +14,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "images": {
-      "collection": "file",
-      "via": "related",
-      "plugin": "upload"
     },
     "address": {
       "type": "string"
@@ -33,9 +23,6 @@
     },
     "coordinates": {
       "type": "json"
-    },
-    "phone": {
-      "type": "string"
     }
   }
 }

@@ -15,24 +15,26 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.7.0",
+    "faker": "^4.1.0"
   },
   "dependencies": {
-    "knex": "latest",
+    "knex": "^0.17.6",
     "lodash": "^4.17.5",
     "sqlite3": "latest",
-    "strapi": "3.0.0-beta.3",
-    "strapi-admin": "3.0.0-beta.3",
-    "strapi-hook-bookshelf": "3.0.0-beta.3",
-    "strapi-hook-knex": "3.0.0-beta.3",
-    "strapi-plugin-content-manager": "3.0.0-beta.3",
-    "strapi-plugin-content-type-builder": "3.0.0-beta.3",
-    "strapi-plugin-email": "3.0.0-beta.3",
-    "strapi-plugin-graphql": "3.0.0-beta.3",
-    "strapi-plugin-settings-manager": "3.0.0-beta.3",
-    "strapi-plugin-upload": "3.0.0-beta.3",
-    "strapi-plugin-users-permissions": "3.0.0-beta.3",
-    "strapi-utils": "3.0.0-beta.3"
+    "strapi": "3.0.0-next.11",
+    "strapi-admin": "3.0.0-next.11",
+    "strapi-hook-bookshelf": "3.0.0-next.11",
+    "strapi-hook-knex": "3.0.0-next.11",
+    "strapi-plugin-content-manager": "3.0.0-next.11",
+    "strapi-plugin-content-type-builder": "3.0.0-next.11",
+    "strapi-plugin-documentation": "3.0.0-next.11",
+    "strapi-plugin-email": "3.0.0-next.11",
+    "strapi-plugin-graphql": "3.0.0-next.11",
+    "strapi-plugin-settings-manager": "3.0.0-next.11",
+    "strapi-plugin-upload": "3.0.0-next.11",
+    "strapi-plugin-users-permissions": "3.0.0-next.11",
+    "strapi-utils": "3.0.0-next.11"
   },
   "author": {
     "name": "zupra",
@@ -47,7 +49,7 @@
     }
   ],
   "strapi": {
-    "uuid": "a3a3833d-dc66-4b04-870b-c43e906b9ca7"
+    "uuid": "4636537e-5e1b-43ff-b0a9-fe4d6bb393dc"
   },
   "engines": {
     "node": "^10.0.0",
