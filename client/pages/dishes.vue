@@ -19,21 +19,26 @@
           .m_2
             h4.Dish_name {{Dish.name}}
             p.Dish_description {{Dish.description}}
-            .flex.x_center.y_center
-              b {{Dish.price}} ₽ &emsp;
+            .flex.x_se.y_center
+              i 100/150 гр
+              b {{Dish.price}} ₽
               .btn(
                 @click="$store.commit('card/add', Dish)"
               ) Заказать
+    //-
+      #CARD.ml_5
+        .btn(
+          @click="showModal = true"
+        ) showModal
+        h1 Корзина
+        h4 totalPrice - {{totalPrice}}
+        //- pre {{inCard}}
+        ol
+          li(
+            v-for="Item in inCard"
+          ) 
+            small {{Item.name}}/q:{{Item.quantity}}
 
-    #CARD.ml_5
-      h1 Корзина
-      h4 totalPrice - {{totalPrice}}
-      //- pre {{inCard}}
-      ol
-        li(
-          v-for="Item in inCard"
-        ) 
-          small {{Item.name}}/q:{{Item.quantity}}
   //-
   svg(xmlns="http://www.w3.org/2000/svg", style="display: none")
     symbol(id="icon-img")
@@ -44,23 +49,20 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 import Strapi from 'strapi-sdk-javascript/build/main'
+
+// import Modal from '~/components/Modal/Modal.vue'
+
 const apiUrl = process.env.API_URL || 'http://localhost:1337'
 const strapi = new Strapi(apiUrl)
 export default {
-  data() {
-    return {
-      // restaurants: []
-    }
-  },
-  // components: {}
-  computed: {
-    ...mapGetters({
-      totalPrice: 'card/price',
-      inCard: 'card/items'
-    })
-  },
+  // data() {
+  //   return {}
+  // },
+  // components: {
+  //   Modal
+  // },
   async asyncData({ app }) {
     const dishes = await strapi.request('post', '/graphql', {
       data: {
@@ -80,9 +82,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      addToCard: 'card/add',
-      removeFromCard: 'card/remove',
-      emptyCard: 'card/emptyList'
+      addToCard: 'card/add'
     })
   }
 }
@@ -106,7 +106,7 @@ export default {
     height 4em
 
 .IMG
-  background #daae9b
+  background #fcbe4c //#daae9b
   width 100% // 320px
   height 220px
   display flex

@@ -5,19 +5,30 @@
       v-for="Item in Nav"
       :href="Item.path"
     ) {{Item.name}}
+    .btn(
+      @click="showModal = true"
+    ) Корзина {{totalQty}}/{{totalPrice}}
   <nuxt />
 
+  Modal(:show.sync="showModal", position="rModal", title="Lorem ipsum dolor")
+    ol
+      li(
+        v-for="Item in inCard"
+      )
+        small {{Item.name}}/q:{{Item.quantity}}
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
+import Modal from '~/components/Modal/Modal.vue'
 export default {
+  components: {
+    Modal
+  },
   data: () => ({
+    showModal: false,
     // ['О ресторане','Меню','Новости','Галерея','Банкеты','Контакты']
     Nav: [
-      // {
-      //   name: 'О ресторане',
-      //   path: '#'
-      // },
       {
         name: 'Меню',
         path: '/dishes'
@@ -39,23 +50,24 @@ export default {
         path: '#'
       }
     ]
-  })
+  }),
+  computed: {
+    ...mapGetters({
+      totalPrice: 'card/price',
+      inCard: 'card/items',
+      totalQty: 'card/quantity'
+    })
+  },
+  methods: {
+    ...mapMutations({
+      removeFromCard: 'card/remove',
+      emptyCard: 'card/emptyList'
+    })
+  }
 }
 </script>
 
 <style lang="stylus">
-html
-  font-family "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
-  /*
-  font-size: 16px;
-  word-spacing: 1px;
-  */
-  -ms-text-size-adjust 100%
-  -webkit-text-size-adjust 100%
-  -moz-osx-font-smoothing grayscale
-  -webkit-font-smoothing antialiased
-  box-sizing border-box
-
 #topNav
   position fixed
   top 0

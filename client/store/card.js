@@ -48,7 +48,7 @@ export const getters = {
       0
     )
   },
-  numberOfItems: state => {
+  quantity: state => {
     return state.items.reduce(
       (accumulator, item) => accumulator + item.quantity,
       0
