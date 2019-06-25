@@ -1,9 +1,13 @@
-@charset "UTF-8" // @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')
+@charset "UTF-8" // @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')
 // font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 // https://www.palettable.io/477DCA-3C4858-3498DB-DEE2E6-5D644F
 
 // @import "__var"
-$link = #8aa4bb
+$link = #8aa4bb // #8492a6
+$text = #3c4858
+$blue = #1fb6ff
+$green = #13ce66
+$orange = #ffa14a // #ff7849
 
 *
   margin 0
@@ -15,7 +19,11 @@ $link = #8aa4bb
   @media (max-width: 400px)
     font-size 14px
 
+a
+  color $link
+
 body
+  background #F8F8FF // url("http://www.ojakhuri.ru/wp-content/themes/title/img/bg.svg") center / cover no-repeat
   color $text
   -moz-osx-font-smoothing grayscale
   -webkit-font-smoothing antialiased
@@ -24,43 +32,26 @@ body
 .Wrap
   padding 4em 1em 1em
   margin auto
-  max-width 1200px
+  max-width 1240px
 
 .MainFullWidth
   margin 4em 1em 3em
 
-a, .link
-  color $link
-
-.link
-  text-decoration underline
-  cursor pointer
-
 @import "__Spacing"
 @import "_Grid"
+@import "_Btn&Form"
 
-// @import "__layout"
-// @import "__utility"
-// @import "__helper"
-// @import "_Card"
-// @import "_Form"
-// @import "_Table"
-// @import "_List"
-// @import "_Text_contrast"
-// @import "_El"
+/*
 .H1, .H2
   line-height 1
   margin-bottom 4px // .5rem
-
 .H1
   font-size 2em
-
 .H2
-  font-size 1.5em
-
+  font-size 1.5em */
 h1, h2, h3, h4, h5
   line-height 1
-  margin 0 0 1em
+  margin 0 0 .7em
 
 h1, h2
   color $header

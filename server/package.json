@@ -19,22 +19,21 @@
     "faker": "^4.1.0"
   },
   "dependencies": {
-    "knex": "^0.17.6",
+    "knex": "latest",
     "lodash": "^4.17.5",
     "sqlite3": "latest",
-    "strapi": "3.0.0-next.11",
-    "strapi-admin": "3.0.0-next.11",
-    "strapi-hook-bookshelf": "3.0.0-next.11",
-    "strapi-hook-knex": "3.0.0-next.11",
-    "strapi-plugin-content-manager": "3.0.0-next.11",
-    "strapi-plugin-content-type-builder": "3.0.0-next.11",
-    "strapi-plugin-documentation": "3.0.0-next.11",
-    "strapi-plugin-email": "3.0.0-next.11",
-    "strapi-plugin-graphql": "3.0.0-next.11",
-    "strapi-plugin-settings-manager": "3.0.0-next.11",
-    "strapi-plugin-upload": "3.0.0-next.11",
-    "strapi-plugin-users-permissions": "3.0.0-next.11",
-    "strapi-utils": "3.0.0-next.11"
+    "strapi": "3.0.0-beta.7",
+    "strapi-admin": "3.0.0-beta.7",
+    "strapi-hook-bookshelf": "3.0.0-beta.7",
+    "strapi-hook-knex": "^3.0.0-beta.7",
+    "strapi-plugin-content-manager": "3.0.0-beta.7",
+    "strapi-plugin-content-type-builder": "3.0.0-beta.7",
+    "strapi-plugin-email": "3.0.0-beta.7",
+    "strapi-plugin-graphql": "3.0.0-beta.7",
+    "strapi-plugin-settings-manager": "3.0.0-beta.7",
+    "strapi-plugin-upload": "3.0.0-beta.7",
+    "strapi-plugin-users-permissions": "3.0.0-beta.7",
+    "strapi-utils": "3.0.0-beta.7"
   },
   "author": {
     "name": "zupra",
@@ -49,7 +48,7 @@
     }
   ],
   "strapi": {
-    "uuid": "4636537e-5e1b-43ff-b0a9-fe4d6bb393dc"
+    "uuid": "19b40b32-5748-482a-86bd-4ff5796791cc"
   },
   "engines": {
     "node": "^10.0.0",

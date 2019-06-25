@@ -2,7 +2,7 @@ const faker = require('faker/locale/ru');
 // faker.locale = "ru";
 const createFakeDishes = () => ({
   name: faker.commerce.productName(),
-  description: faker.commerce.product(),
+  description: faker.lorem.sentence(12),
   price: faker.commerce.price(),
   khimki: faker.random.boolean(),
   korolev: faker.random.boolean(),
