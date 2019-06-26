@@ -22,22 +22,10 @@
             .flex.x_se.y_center
               i 100/150 гр
               b {{Dish.price}} ₽
-              .btn(
-                @click="$store.commit('card/add', Dish)"
+              .btn.uped.green(
+                @click="$store.commit('cart/add', Dish)"
               ) Заказать
-    //-
-      #CARD.ml_5
-        .btn(
-          @click="showModal = true"
-        ) showModal
-        h1 Корзина
-        h4 totalPrice - {{totalPrice}}
-        //- pre {{inCard}}
-        ol
-          li(
-            v-for="Item in inCard"
-          ) 
-            small {{Item.name}}/q:{{Item.quantity}}
+
 
   //-
   svg(xmlns="http://www.w3.org/2000/svg", style="display: none")
@@ -82,7 +70,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      addToCard: 'card/add'
+      addToCart: 'cart/add'
     })
   }
 }
@@ -106,7 +94,7 @@ export default {
     height 4em
 
 .IMG
-  background #fcbe4c //#daae9b
+  background #fcbe4c // #daae9b
   width 100% // 320px
   height 220px
   display flex

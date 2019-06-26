@@ -1,26 +1,81 @@
+$size_Mod()
+  @media (min-width: 500px)
+    &.xs
+      font-size .5rem
+    &.sm
+      font-size .6rem
+    &.lg
+      font-size 1rem
+    &.xl
+      font-size 1.2rem
+
+$CLR()
+  &.blue
+    background $blue
+    &:hover
+      background $blue - 15
+  &.red
+    background $red
+    &:hover
+      background $red - 10%
+  &.green
+    background $green
+    &:hover
+      background $green - 10%
+  &.orange
+    background $orange
+    &:hover
+      background $orange - 20%
+
 button, input, select, textarea
-  line-height 1
   outline 0
   box-shadow none
+  // font-size .8rem
+
+// input:not([type=checkbox]):not([type=file]):not([type=color]), textarea, select
+input, textarea, select
+  appearance none
+  box-shadow none
+  // background-color: transparent
+  border 2px solid $link + 30
+  line-height 1
+  // width: 100%
+  &:focus
+    border-color $orange // #ff9800
+
+// BaseFormEl
+.btn, button, input, textarea, select
+  border-radius .4rem
+  font-family inherit
+  height 2em
+  padding 0 .7em
+  // margin 0 2px
+  $size_Mod()
 
 .btn
+  min-width 2em
+  text-align center
+  line-height 2em
   user-select none
-  height 2em
-  display flex
-  justify-content center
-  align-items center
-  line-height 1
+  // display inline-flex
+  // justify-content center
+  // align-items center
+  display inline-block
   cursor pointer
   border 0
   color #fff
-  background $red //$blue
-  border-bottom 3px solid rgba(0, 0, 0, .1)
-  border-radius .4em
-  padding 0 1em
+  background $link
   transition background .3s
   &:hover
-    background $red - 10% //#00aafc
+    background $link - 10%
+  &.uped
+    vertical-align bottom
+    // height calc(2em + 3px)
+    border-bottom 3px solid rgba(0, 0, 0, .2)
+    &:active
+      // background inherit
+      border-bottom 0
 
-  &:active
-    background $blue
-    border-bottom 0
+.btn
+  font-size .8rem
+  $CLR()

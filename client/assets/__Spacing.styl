@@ -2,12 +2,18 @@
 sizes = { "1": .25rem, "2": .5rem, "3": 1rem, "4": 1.5rem, "5": 3rem }
 direction = { t: top, r: right, b: bottom, l: left }
 
-spacing_margin(sizes)
+margin_S(sizes)
   for key, val in sizes
     &_{key}
       margin val
+    &y_{key}
+      margin-left val
+      margin-right val
+    &x_{key}
+      margin-top val
+      margin-bottom val
 
-spacing_margin_direction(sizes, direction)
+margin_direction(sizes, direction)
   for K, V in direction
     &{K}
       for key, val in sizes
@@ -15,5 +21,13 @@ spacing_margin_direction(sizes, direction)
           margin-{V} val
 
 .m
-  spacing_margin(sizes)
-  spacing_margin_direction(sizes, direction)
+  margin_S(sizes)
+  margin_direction(sizes, direction)
+
+hr
+  margin 1em 0
+  height 1px
+  border 0
+  border-top 1px solid rgba(#999, .5)
+  &.hr_0
+    margin 0

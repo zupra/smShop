@@ -32,6 +32,10 @@ export const mutations = {
     }
     // Cookies.set('card', state.items)
   },
+  del(state, item) {
+    const index = state.items.findIndex(i => i.id === item.id)
+    state.items.splice(index, 1)
+  },
   emptyList(state) {
     state.items = []
     // Cookies.set('card', state.items)
