@@ -30,7 +30,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '~/plugins/vuex-persist.js'
+  ],
   /*
    ** Nuxt.js modules
    */

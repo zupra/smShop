@@ -3,7 +3,7 @@
   v-show='show', 
   @click.self='close'
 )
-  .Modal-Card(:class='[mod, position]')
+  .Modal-Card(:class='[position]')
     .title(v-if='title') {{ title }}
     .slot_Title(v-if='$slots.title')
       slot(name='title')
@@ -12,7 +12,6 @@
     .actions
       slot(name='actions')
         button.btn.blue.xl(
-          v-show="!freezing"
           @click='close'
         ) Закрыть
 
@@ -25,23 +24,14 @@ export default {
       type: Boolean,
       required: true
     },
-    freezing: {
-      type: Boolean,
-      default: false
-    },
-    mod: {
-      type: String,
-      default: null
-      // ['XL','SM','toCenter']
-    },
     title: {
       type: String,
       default: null
     },
     position: {
       type: String,
-      default: 'Y_center',
-      validator: prop => ['Y_center', 'rModal', 'lModal'].includes(prop)
+      default: 'toCenter'
+      // validator: prop => ['toCenter', 'toRight'].includes(prop)
     }
   },
   watch: {
@@ -53,7 +43,7 @@ export default {
   },
   methods: {
     close() {
-      !this.freezing && this.$emit('update:show', false)
+      this.$emit('update:show', false)
       // document.body.style = ''
     }
   }
@@ -62,9 +52,6 @@ export default {
 
 <style lang="stylus">
 $bg = #f1f1f1
-
-.slot_Title
-  padding 1rem
 
 .Modal
   &-rootOverlay
@@ -92,6 +79,8 @@ $bg = #f1f1f1
     line-height 1.3
     padding .75rem 1.5rem
     // border-radius .2em 0 0
+  .slot_Title
+    padding 1rem
   .body
     background #f7f7f7
     padding 1rem .7rem 1rem 1.5rem
@@ -102,37 +91,31 @@ $bg = #f1f1f1
     padding 1rem 1.2rem
   &.toCenter
     margin auto
+    border-radius .2em
+    width 90%
+    max-width 780px
+    transform scale(.5)
+    opacity 0
+    animation anim_toCenter .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
 
-// props:position
-.Y_center
-  // max-height 70vh
-  margin auto // 10% auto auto
-  border-radius .2em
-  width 90%
-  max-width 780px
-  transform scale(.5)
-  opacity 0
-  animation Y_center .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
 
-@keyframes Y_center
+  &.toRight
+    // overflow overlay
+    // padding 0 1em 1em
+    max-width 420px
+    // FIX
+    // align-self start
+    // min-height 100%
+    animation anim_toRight .1s .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
+    margin-left auto
+    transform translateX(100%)
+
+@keyframes anim_toCenter
   to
     transform scale(1)
     opacity 1
 
-.rModal
-  // overflow overlay
-  // padding 0 1em 1em
-  max-width 420px
-  // FIX
-  align-self start
-  min-height 100%
-  animation translateX .1s .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
-
-.rModal
-  margin-left auto
-  transform translateX(100%)
-
-@keyframes translateX
+@keyframes anim_toRight
   to
     transform translateX(0)
 </style>

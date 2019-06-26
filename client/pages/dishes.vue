@@ -4,7 +4,7 @@
     div
       h1 Dishes
       .flex_wr.x_center
-        .Dish.flex_col.m_2(
+        .Dish.FONT_2.flex_col.m_2(
           v-for="Dish in dishes"
         )
           .IMG
@@ -16,13 +16,15 @@
               fill="#FFF"
             ).IMG_icon
               use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#icon-img')
-          .m_2
+          .m_2.mb_3
             h4.Dish_name {{Dish.name}}
-            p.Dish_description {{Dish.description}}
-            .flex.x_se.y_center
+            .lh_1.Dish_description {{Dish.description}}
+            .flex.x_center.y_center
               i 100/150 гр
+              | &emsp;
               b {{Dish.price}} ₽
-              .btn.uped.green(
+              | &emsp;
+              .btn.outline.circle.green(
                 @click="$store.commit('cart/add', Dish)"
               ) Заказать
 
@@ -80,13 +82,13 @@ export default {
 .Dish
   background #FFF
   // width 276px // 320px
-  flex 1 1 280px
-  box-shadow 0 0 2px #bbb
+  flex: 2 0 250px;
+  // box-shadow 0 0 2px #bbb
   // box-shadow 3px 3px 0 0 rgba(244, 68, 46, .5)
-  // border 2px solid #444
+  outline 1px solid rgba(#a8c2d9, .3)
   transition box-shadow .3s, transform .3s
   &:hover
-    box-shadow 0 2px 1em #bbb
+    box-shadow 0 2px 12px -3px #bbb
     transform translate(0, -4px)
   &_name
     height 2em
@@ -94,7 +96,7 @@ export default {
     height 4em
 
 .IMG
-  background #fcbe4c // #daae9b
+  background #CCC // #daae9b
   width 100% // 320px
   height 220px
   display flex

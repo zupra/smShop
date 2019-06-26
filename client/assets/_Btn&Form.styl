@@ -9,11 +9,12 @@ $size_Mod()
     &.xl
       font-size 1.2rem
 
-$CLR()
+$CLR_fill()
+  // &.fill
   &.blue
     background $blue
     &:hover
-      background $blue - 15
+      background $blue - 12%
   &.red
     background $red
     &:hover
@@ -26,6 +27,23 @@ $CLR()
     background $orange
     &:hover
       background $orange - 20%
+
+item-btn(clr)
+  color clr
+  border-color clr
+  &:hover
+    color #FFF
+    background clr + 10
+$CLR()
+  // &.fill
+  &.blue
+    item-btn($blue)
+  &.red
+    item-btn($red)
+  &.green
+    item-btn($green)
+  &.orange
+    item-btn($orange)
 
 button, input, select, textarea
   outline 0
@@ -53,29 +71,49 @@ input, textarea, select
   $size_Mod()
 
 .btn
-  min-width 2em
-  text-align center
-  line-height 2em
-  user-select none
-  // display inline-flex
-  // justify-content center
-  // align-items center
   display inline-block
   cursor pointer
-  border 0
-  color #fff
+
+  min-width 2em
+  
+  font-size .8rem
+  user-select none
+  // text-align center
+  // line-height 2em
+  display inline-flex
+  justify-content center
+  align-items center
+
+  
+  &:active
+    //transform: translate(.2em, .2em)
+    transform: translateY(.2em,)
+
+
+.outline
+  $CLR()
+  box-shadow: 4px 4px 0 0 rgba(#888, .4), 0 2px 10px 0 rgba(#000 .2)
+  //box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+  transition: background-color 0.3s, color 0.3s
+  border .1em solid currentColor
+  color $link
+  &:hover
+    background $link
+    color #FFF
+.btn.circle
+  border-radius: 3em;
+.uped
+  $CLR_fill()
   background $link
-  transition background .3s
   &:hover
     background $link - 10%
-  &.uped
-    vertical-align bottom
-    // height calc(2em + 3px)
-    border-bottom 3px solid rgba(0, 0, 0, .2)
-    &:active
-      // background inherit
-      border-bottom 0
+  color #fff
+  vertical-align bottom
+  // height calc(2em + 3px)
+  border-bottom 3px solid rgba(0, 0, 0, .2)
+  &:active
+    // background inherit
+    border-bottom 0
 
-.btn
-  font-size .8rem
-  $CLR()
+
+  

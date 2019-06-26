@@ -16,7 +16,8 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
     "nuxt": "^2.0.0",
-    "strapi-sdk-javascript": "^0.3.1"
+    "strapi-sdk-javascript": "^0.3.1",
+    "vuex-persist": "^2.0.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
