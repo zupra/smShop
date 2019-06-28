@@ -1,69 +1,65 @@
 <template lang="pug">
 
 .Wrap
-  h1 restaurants
+  h1 categories
+  
+  .btn.uped(
+    v-for="Item in categories"
+    @click="selectСategory(Item.id)"
+  ) {{Item.name}}
+  //- pre {{categories}}
 
-  //- pre {{restaurants}}
-
-  //-
-    .flex_wr
-      .Card.flex_col.m_3(
-        v-for="Restaurant in restaurants"
-      )
-        picture
-          img(
-            :src="`http://localhost:1337${Restaurant.images[0].url}`"
-          )
-        h4 {{Restaurant.name}}
-
-        NLink(
-          :to="`/restaurants/${Restaurant.id}`"
-        ) goTo
-
-
+  pre {{category}}
 
 </template>
 
 <script>
-// import Strapi from 'strapi-sdk-javascript/build/main'
-// const apiUrl = process.env.API_URL || 'http://localhost:1337'
-// const strapi = new Strapi(apiUrl)
+import Strapi from 'strapi-sdk-javascript/build/main'
+const apiUrl = process.env.API_URL || 'http://localhost:1337'
+const strapi = new Strapi(apiUrl)
 export default {
   data() {
     return {
-      // restaurants: []
+      // currCategory: null
+      category: null // {}
     }
   },
   // components: {}
   async asyncData({ app }) {
-    /*
-    const restaurants = await app.$axios.$get(`${apiUrl}/restaurants`)
-    return {
-      restaurants
-    }
-    
-
-    const restaurants = await strapi.request('post', '/graphql', {
+    const categories = await strapi.request('post', '/graphql', {
       data: {
         query: `
         query {
-          restaurants {
+          categories {
             id,
-            name,
-            description,
-            images {
-              url
-            }
+            name
           }
         }
         `
       }
     })
-    return { ...restaurants.data }
-    */
+    return { ...categories.data }
   },
-  async mounted() {
-    await new Promise(resolve => setTimeout(() => resolve(), 10000))
+  methods: {
+    async selectСategory(id) {
+      const category = await strapi.request('post', '/graphql', {
+        data: {
+          query: `
+            query {
+              category(id: "${id}") {
+                name
+                dishes {
+                  name
+                  description
+                  price
+                }
+              }
+            }
+            `
+        }
+      })
+      this.category = { ...category.data }
+    }
   }
 }
 </script>

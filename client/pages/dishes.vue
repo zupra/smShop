@@ -25,7 +25,7 @@
               b {{Dish.price}} ₽
               | &emsp;
               .btn.outline.circle.green(
-                @click="$store.commit('cart/add', Dish)"
+                @click="$store.commit('cart/addItem', Dish)"
               ) Заказать
 
 
@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      addToCart: 'cart/add'
+      addToCart: 'cart/addItem'
     })
   }
 }
@@ -82,7 +82,7 @@ export default {
 .Dish
   background #FFF
   // width 276px // 320px
-  flex: 2 0 250px;
+  flex 2 0 250px
   // box-shadow 0 0 2px #bbb
   // box-shadow 3px 3px 0 0 rgba(244, 68, 46, .5)
   outline 1px solid rgba(#a8c2d9, .3)

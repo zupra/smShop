@@ -2,9 +2,12 @@
 #layout
   #topNav.flex.x_sb.y_center
     .flex.x_se.fr
-      a(
+      NLink(
+        to="/"
+      ) HOME
+      NLink(
         v-for="Item in Nav"
-        :href="Item.path"
+        :to="Item.path"
       ) {{Item.name}}
     //- .btn.xl.uped.green(
     //-   @click="showModal = true"
@@ -54,7 +57,7 @@
         | &nbsp;
         .fr.flex.y_center
           .btn.uped(
-            @click="removeFromCart(dish)"
+            @click="minusItem(dish)"
           ) -
           span.m_1 {{dish.quantity}}
           .btn.uped(
@@ -65,6 +68,17 @@
           @click="delItem(dish)"
         ) ✖
 
+    .flex.x_sb.y_center(
+      slot="actions"
+    )
+      
+      .btn.blue.xl(
+        @click="showModal = false; $router.push('/checkout')"
+      ) Оформить
+
+      .btn.blue.xl(
+        @click="showModal = false"
+      ) Закрыть
       
 </template>
 
@@ -111,9 +125,9 @@ export default {
   },
   methods: {
     ...mapMutations({
-      addToCart: 'cart/add',
-      removeFromCart: 'cart/remove',
-      delItem: 'cart/del',
+      addToCart: 'cart/addItem',
+      minusItem: 'cart/minusItem',
+      delItem: 'cart/delItem',
       emptyCart: 'cart/emptyList'
     })
   }
@@ -130,14 +144,4 @@ export default {
   height 3em
   background #FFF
   box-shadow 0 3px 5px 0 hsla(0, 0%, 60%, .2)
-
-
-.DISHES_inCart
-  max-height 50vh
-  overflow-y scroll
-
-.dishInCart
-  padding .5em 0
-  &+&
-    border-top 1px solid #CCC
 </style>

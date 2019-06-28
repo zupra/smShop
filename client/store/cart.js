@@ -8,7 +8,7 @@ export const mutations = {
   setItems(state, items) {
     state.items = items
   },
-  add(state, item) {
+  addItem(state, item) {
     const record = state.items.find(i => i.id === item.id)
 
     if (!record) {
@@ -21,7 +21,7 @@ export const mutations = {
     }
     // Cookies.set('card', state.items)
   },
-  remove(state, item) {
+  minusItem(state, item) {
     const record = state.items.find(i => i.id === item.id)
 
     if (record.quantity > 1) {
@@ -32,7 +32,7 @@ export const mutations = {
     }
     // Cookies.set('card', state.items)
   },
-  del(state, item) {
+  delItem(state, item) {
     const index = state.items.findIndex(i => i.id === item.id)
     state.items.splice(index, 1)
   },

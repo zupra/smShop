@@ -10,25 +10,29 @@
   },
   "attributes": {
     "name": {
-  "type": "string"
-},
-"img": {
-  "type": "string"
-},
-"description": {
-  "type": "text"
-},
-"price": {
-  "type": "integer"
-},
-"khimki": {
-  "type": "boolean"
-},
-"korolev": {
-  "type": "boolean"
-},
-"moscow": {
-  "type": "boolean"
-}
+      "type": "string"
+    },
+    "img": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "khimki": {
+      "type": "boolean"
+    },
+    "korolev": {
+      "type": "boolean"
+    },
+    "moscow": {
+      "type": "boolean"
+    },
+    "category": {
+      "model": "categories",
+      "via": "dishes"
+    }
   }
 }
