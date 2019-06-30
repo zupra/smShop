@@ -1,36 +1,16 @@
 <template lang="pug">
 
 .Wrap
-
-  span.brightStr В корзине 
-    b {{totalQty}} 
-    | шт / 
-    b {{totalPrice}}
-    |  ₽
+  center
+    span.brightStr В корзине 
+      b {{totalQty}} 
+      | шт / 
+      b {{totalPrice}}
+      |  ₽
 
   hr
 
-  .DISHES_inCart
-    .dishInCart.mx_2.flex.y_center.x_sb(
-      v-for="dish in inCart"
-    )
-    
-      .fr_50.lh_1 {{dish.name}}
-      | &nbsp;
-      .bold {{dish.price}}₽
-      | &nbsp;
-      .fr.flex.y_center
-        .btn.uped(
-          @click="minusItem(dish)"
-        ) -
-        span.m_1 {{dish.quantity}}
-        .btn.uped(
-          @click="addToCart(dish)"
-        ) +
-      | &emsp;
-      .btn.uped.red(
-        @click="delItem(dish)"
-      ) ✖
+  Cart
 
   hr
 
@@ -48,13 +28,16 @@
 </template>
 
 <script>
+import Cart from '~/components/@Item/Cart.vue'
 import { mapMutations, mapGetters } from 'vuex'
 import Strapi from 'strapi-sdk-javascript/build/main'
 const apiUrl = process.env.API_URL || 'http://localhost:1337'
 const strapi = new Strapi(apiUrl)
 
 export default {
-  // components: {},
+  components: {
+    Cart
+  },
   data: () => ({
     address: ''
   }),

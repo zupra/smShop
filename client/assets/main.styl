@@ -1,18 +1,21 @@
-@charset "UTF-8" // @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700&subset=cyrillic')
+//@charset "UTF-8" 
+@import url('https://fonts.googleapis.com/css?family=Gabriela|Oswald&display=swap')
+// font-family: 'Oswald', sans-serif;
+// font-family: 'Gabriela', serif;
+
 // font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 // https://www.palettable.io/477DCA-3C4858-3498DB-DEE2E6-5D644F
 
+
+
 // @import "__var"
-$link = #8aa4bb // #8492a6
-$text = #375d61 // #3c4858
-// $blue = #1fb6ff
-// $green = #13ce66
-// $orange = #ffa14a // #ff7849
-// $red = #ff5b41
-$blue = #86adbf
-$green = #82c8a0
-$orange = #ffa07a
-$red = #ff8383
+$link = #2A8ED1
+$text = #192133
+
+$blue = #3498db
+$green = #2ecc71
+$orange = #e67e22
+$red = #e74c3c
 
 *
   margin 0
@@ -20,18 +23,21 @@ $red = #ff8383
   box-sizing border-box
 
 :root
-  font 100% / 1.4 "Roboto", "Helvetica Neue", sans-serif
+  font 100% / 1.4 'Gabriela', serif;
   @media (max-width: 400px)
-    font-size 14px
+    font-size 12px
 
 a
+  font-family: 'Oswald', sans-serif;
   color $link
 
 body
   // url("http://www.ojakhuri.ru/wp-content/themes/title/img/bg.svg") center / cover no-repeat
   color $text
+  background #ecf0f1
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   -moz-osx-font-smoothing grayscale
-  -webkit-font-smoothing antialiased
+  // -webkit-font-smoothing antialiased
   -webkit-text-size-adjust none // Отключает масштабирование текста в горизонтальной ориентации
 
 .Wrap
@@ -57,14 +63,20 @@ body
 .H2
   font-size 1.5em */
 h1, h2, h3, h4, h5
+  font-family: 'Oswald', sans-serif;
   line-height 1
   margin 0 0 .7em
 
 h1, h2
-  color $header
+  // color $header
   font-weight 400
   -moz-osx-font-smoothing grayscale
   -webkit-font-smoothing antialiased
 
 p
   margin-bottom .75em
+
+
+[disabled]
+  cursor not-allowed !important
+  opacity .5 //!important

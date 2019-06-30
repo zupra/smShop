@@ -82,8 +82,9 @@ $bg = #f1f1f1
   .slot_Title
     padding 1rem
   .body
-    background #f7f7f7
-    padding 1rem .7rem 1rem 1.5rem
+    padding 1rem 1.5rem
+    background #fbfcfd //#f7f7f7
+    box-shadow: 0 0 1em #CCC inset;
     // line-height 1.2rem
   .actions
     // padding: .75rem 1.5rem 1.2rem
@@ -102,7 +103,7 @@ $bg = #f1f1f1
   &.toRight
     // overflow overlay
     // padding 0 1em 1em
-    max-width 420px
+    max-width 460px
     // FIX
     // align-self start
     // min-height 100%

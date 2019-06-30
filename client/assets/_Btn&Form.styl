@@ -1,7 +1,5 @@
 $size_Mod()
   @media (min-width: 500px)
-    &.xs
-      font-size .5rem
     &.sm
       font-size .6rem
     &.lg
@@ -10,11 +8,6 @@ $size_Mod()
       font-size 1.2rem
 
 $CLR_fill()
-  // &.fill
-  &.blue
-    background $blue
-    &:hover
-      background $blue - 12%
   &.red
     background $red
     &:hover
@@ -26,18 +19,14 @@ $CLR_fill()
   &.orange
     background $orange
     &:hover
-      background $orange - 20%
+      background $orange - 10%
 
 item-btn(clr)
   color clr
   border-color clr
   &:hover
-    color #FFF
     background clr + 10
-$CLR()
-  // &.fill
-  &.blue
-    item-btn($blue)
+$CLR_outline()
   &.red
     item-btn($red)
   &.green
@@ -46,74 +35,74 @@ $CLR()
     item-btn($orange)
 
 button, input, select, textarea
+  //font-family inherit
   outline 0
-  box-shadow none
+  // box-shadow none
   // font-size .8rem
 
 // input:not([type=checkbox]):not([type=file]):not([type=color]), textarea, select
 input, textarea, select
   appearance none
-  box-shadow none
-  // background-color: transparent
-  border 2px solid $link + 30
-  line-height 1
+  border-color #7f8c8d
   // width: 100%
   &:focus
-    border-color $orange // #ff9800
+    border-color $orange
 
-// BaseFormEl
+// BASE FormEl
 .btn, button, input, textarea, select
-  border-radius .4rem
-  font-family inherit
+  font-family: sans-serif
+  border 2px solid
+  // border-radius .4rem
+  font-size .8rem
+  line-height 1
   height 2em
   padding 0 .7em
-  // margin 0 2px
   $size_Mod()
 
+// BASE Btn
 .btn
-  display inline-block
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor pointer
-
-  min-width 2em
-  
-  font-size .8rem
   user-select none
-  // text-align center
+  
+  // display inline-block
   // line-height 2em
+  // text-align center
   display inline-flex
   justify-content center
   align-items center
 
-  
+
   &:active
     //transform: translate(.2em, .2em)
     transform: translateY(.2em,)
 
-
-.outline
-  $CLR()
-  box-shadow: 4px 4px 0 0 rgba(#888, .4), 0 2px 10px 0 rgba(#000 .2)
-  //box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
-  transition: background-color 0.3s, color 0.3s
-  border .1em solid currentColor
-  color $link
+.btn
+  background $blue
+  border-color: transparent;
+  color #FFF
   &:hover
-    background $link
-    color #FFF
-.btn.circle
-  border-radius: 3em;
-.uped
+    background $blue - 10%
   $CLR_fill()
-  background $link
-  &:hover
-    background $link - 10%
-  color #fff
-  vertical-align bottom
-  // height calc(2em + 3px)
-  border-bottom 3px solid rgba(0, 0, 0, .2)
-  &:active
-    // background inherit
-    border-bottom 0
+
+  &._icon
+    padding 0 //reset
+    width 2em
+
+  &.circle
+    border-radius: 3em;
+  // $.radius
+  //   border-radius .4rem
 
 
-  
+  &.outline
+    border-radius .3rem
+    background-color #FFF
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.03em;
+    item-btn($blue)
+    $CLR_outline()
+    transition: background-color 0.3s, color 0.3s
+    &:hover
+      color #FFF
+

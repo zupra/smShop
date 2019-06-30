@@ -6,10 +6,11 @@
         to="/"
       ) HOME
       NLink(
-        v-for="Item in Nav"
+        v-for="Item,idx in Nav"
+        :key="idx"
         :to="Item.path"
       ) {{Item.name}}
-    //- .btn.xl.uped.green(
+    //- .btn.xl.green(
     //-   @click="showModal = true"
     //- ) Корзина {{totalQty}} / {{totalPrice}}
 
@@ -39,34 +40,7 @@
         @click="modalPosition == 'toRight' ? modalPosition='toCenter' : modalPosition='toRight'"
         v-text="modalPosition == 'toRight' ? '« По центру' : 'Справа »'"
       )
-      | &emsp;
-      span.brightStr В корзине 
-        b {{totalQty}} 
-        | шт / 
-        b {{totalPrice}}
-        |  ₽
-    
-    .DISHES_inCart
-      .dishInCart.mx_2.flex.y_center.x_sb(
-        v-for="dish in inCart"
-      )
-      
-        .fr_50.lh_1 {{dish.name}}
-        | &nbsp;
-        .bold {{dish.price}}₽
-        | &nbsp;
-        .fr.flex.y_center
-          .btn.uped(
-            @click="minusItem(dish)"
-          ) -
-          span.m_1 {{dish.quantity}}
-          .btn.uped(
-            @click="addToCart(dish)"
-          ) +
-        | &emsp;
-        .btn.uped.red(
-          @click="delItem(dish)"
-        ) ✖
+    Cart
 
     .flex.x_sb.y_center(
       slot="actions"
@@ -83,11 +57,14 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import Modal from '~/components/Modal/Modal.vue'
+import Cart from '~/components/@Item/Cart.vue'
+
 export default {
   components: {
-    Modal
+    Modal,
+    Cart
   },
   data: () => ({
     showModal: false,
@@ -118,17 +95,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      totalPrice: 'cart/price',
-      inCart: 'cart/items',
       totalQty: 'cart/quantity'
-    })
-  },
-  methods: {
-    ...mapMutations({
-      addToCart: 'cart/addItem',
-      minusItem: 'cart/minusItem',
-      delItem: 'cart/delItem',
-      emptyCart: 'cart/emptyList'
     })
   }
 }

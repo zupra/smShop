@@ -4,7 +4,7 @@
     div
       h1 Dishes
       .flex_wr.x_center
-        .Dish.FONT_2.flex_col.m_2(
+        .Dish.flex_col.m_2(
           v-for="Dish in dishes"
         )
           .IMG
@@ -24,7 +24,7 @@
               | &emsp;
               b {{Dish.price}} ₽
               | &emsp;
-              .btn.outline.circle.green(
+              .btn.outline.radius.orange(
                 @click="$store.commit('cart/addItem', Dish)"
               ) Заказать
 
@@ -85,10 +85,13 @@ export default {
   flex 2 0 250px
   // box-shadow 0 0 2px #bbb
   // box-shadow 3px 3px 0 0 rgba(244, 68, 46, .5)
-  outline 1px solid rgba(#a8c2d9, .3)
   transition box-shadow .3s, transform .3s
+  // box-shadow 0 2px 12px -3px #bbb
+  // box-shadow: 0 1px 8px rgba(0,0,0,.2), 0 3px 4px rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.12);
+  box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
   &:hover
-    box-shadow 0 2px 12px -3px #bbb
+    // outline 1px solid rgba(#a8c2d9, .3)
+    box-shadow: 0 4px 5px -2px rgba(0,0,0,.2), 0 7px 10px 1px rgba(0,0,0,.14), 0 2px 16px 1px rgba(0,0,0,.12);
     transform translate(0, -4px)
   &_name
     height 2em
