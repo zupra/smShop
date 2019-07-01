@@ -83,8 +83,8 @@ $bg = #f1f1f1
     padding 1rem
   .body
     padding 1rem 1.5rem
-    background #fbfcfd //#f7f7f7
-    box-shadow: 0 0 1em #CCC inset;
+    // background #fbfcfd //#f7f7f7
+    box-shadow 0 0 1em #CCC inset
     // line-height 1.2rem
   .actions
     // padding: .75rem 1.5rem 1.2rem
@@ -98,15 +98,13 @@ $bg = #f1f1f1
     transform scale(.5)
     opacity 0
     animation anim_toCenter .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
-
-
   &.toRight
     // overflow overlay
     // padding 0 1em 1em
     max-width 460px
     // FIX
-    // align-self start
-    // min-height 100%
+    align-self start
+    min-height 100%
     animation anim_toRight .1s .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
     margin-left auto
     transform translateX(100%)

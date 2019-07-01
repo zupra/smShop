@@ -3,7 +3,7 @@
 .Wrap
   h1 categories
   
-  .btn(
+  .btn.m_1(
     v-for="Item in categories"
     @click="selectСategory(Item.id)"
   ) {{Item.name}}
