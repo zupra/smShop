@@ -4,12 +4,12 @@
   @click.self='close'
 )
   .Modal-Card(:class='[position]')
-    .title(v-if='title') {{ title }}
-    .slot_Title(v-if='$slots.title')
+    .M__title(v-if='title') {{ title }}
+    .M__slot_Title(v-if='$slots.title')
       slot(name='title')
-    .body
+    .M__body
       slot
-    .actions
+    .M__actions
       slot(name='actions')
         button.btn.blue.xl(
           @click='close'
@@ -74,22 +74,6 @@ $bg = #f1f1f1
     background #FFF
 
 .Modal-Card
-  .title
-    font-size 1.4rem
-    line-height 1.3
-    padding .75rem 1.5rem
-    // border-radius .2em 0 0
-  .slot_Title
-    padding 1rem
-  .body
-    padding 1rem 1.5rem
-    // background #fbfcfd //#f7f7f7
-    box-shadow 0 0 1em #CCC inset
-    // line-height 1.2rem
-  .actions
-    // padding: .75rem 1.5rem 1.2rem
-    text-align right
-    padding 1rem 1.2rem
   &.toCenter
     margin auto
     border-radius .2em
@@ -108,6 +92,26 @@ $bg = #f1f1f1
     animation anim_toRight .1s .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
     margin-left auto
     transform translateX(100%)
+
+.M
+  &__title
+    font-size 1.4rem
+    line-height 1.3
+    padding .75rem 1.5rem
+    // border-radius .2em 0 0
+  &__slot_Title
+    padding 1rem
+  &__body
+    padding 1rem 1.5rem
+    // background #fbfcfd //#f7f7f7
+    box-shadow 0 0 1em #CCC inset
+    // line-height 1.2rem
+    max-height calc(100vh - 140px)
+    overflow-y scroll
+  &__actions
+    // padding: .75rem 1.5rem 1.2rem
+    text-align right
+    padding 1rem 1.2rem
 
 @keyframes anim_toCenter
   to

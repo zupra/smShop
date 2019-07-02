@@ -75,15 +75,13 @@ export default {
 
 <style lang="stylus">
 // .Cart
-
 .CartTotal
   font-size 1.4em
 
 .CartItem
   padding .7em 0
   border-bottom 1px solid #EEE
-  &_qtyMinus,
-  &_qtyPlus
+  &_qtyMinus, &_qtyPlus
     width 1.2em
     height 1.2em
     border 1px solid #CCC
@@ -91,10 +89,9 @@ export default {
     &[disabled]
       background-color grey
   &_qtyMinus
-    background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='11'><line x1='0' y1='5' x2='10' y2='5' stroke='grey'></line></svg>") center no-repeat
+    background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><line x1='0' y1='5' x2='10' y2='5' stroke='black'></line></svg>") center no-repeat
   &_qtyPlus
-    background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='11' height='10'><g stroke='grey'><line x1='0' y1='5' x2='10' y2='5'></line><line x1='5' y1='0' x2='5' y2='10'></line></g></svg>") center no-repeat
-
+    background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><g stroke='black'><line x1='0' y1='5' x2='10' y2='5'></line><line x1='5' y1='0' x2='5' y2='10'></line></g></svg>") center no-repeat
   &_qtyResult
     width 1.8em
     text-align center

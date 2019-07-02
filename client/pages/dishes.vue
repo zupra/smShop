@@ -82,16 +82,10 @@ export default {
 <style lang="stylus">
 .Dish
   background #FFF
-  // width 276px // 320px
   flex 2 0 250px
-  // box-shadow 0 0 2px #bbb
-  // box-shadow 3px 3px 0 0 rgba(244, 68, 46, .5)
   transition box-shadow .3s, transform .3s
-  // box-shadow 0 2px 12px -3px #bbb
-  // box-shadow: 0 1px 8px rgba(0,0,0,.2), 0 3px 4px rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.12);
   box-shadow 0 1px 3px rgba(0, 0, 0, .2), 0 1px 1px rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
   &:hover
-    // outline 1px solid rgba(#a8c2d9, .3)
     box-shadow 0 4px 5px -2px rgba(0, 0, 0, .2), 0 7px 10px 1px rgba(0, 0, 0, .14), 0 2px 16px 1px rgba(0, 0, 0, .12)
     transform translate(0, -4px)
   &_name

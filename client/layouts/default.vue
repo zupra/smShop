@@ -16,6 +16,10 @@
 
     // https://icongr.am/feather/shopping-cart.svg
     // https://icongr.am/material/cart-outline.svg
+    //- transition(
+    //-   name="cartUpdate"
+    //-   :key="totalQty"
+    //- )
     svg(
       xmlns='http://www.w3.org/2000/svg',
       viewBox='0 0 193.056 193.056',
@@ -41,11 +45,10 @@
         v-text="modalPosition == 'toRight' ? '« По центру' : 'Справа »'"
       )
     Cart
-
+    //- slot="actions"
     .flex.x_sb.y_center(
       slot="actions"
     )
-      
       .btn.blue.xl(
         @click="showModal = false; $router.push('/checkout')"
       ) Оформить
@@ -109,6 +112,9 @@ export default {
   width 100%
   z-index 5
   height 3em
-  background #FFF
-  box-shadow 0 3px 5px 0 hsla(0, 0%, 60%, .2)
+  background #2a8ed1
+  box-shadow 0 1px 8px rgba(0, 0, 0, .2), 0 3px 4px rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12)
+  color #FFF
+  a
+    color #FFF
 </style>
