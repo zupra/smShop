@@ -20,6 +20,10 @@ $CLR_fill()
     background $orange
     &:hover
       background $orange - 10%
+  &.grey
+    background #7f8c8d
+    &:hover
+      background #7f8c8d - 10%
 
 // OUTLINE
 item-btn(clr)
@@ -129,6 +133,16 @@ $outline_Mod()
   &._icon
     padding 0 // reset
     width 2em
+    border-radius 50%
+    // img
+    //   height 1.2em
   $outline_Mod()
   &.circle
     border-radius 3em
+
+/*
+.i_plus
+  background-image url('~static/icon/plus.svg') center no-repeat
+.i_minus
+  background-image url('~static/icon/minus.svg') center no-repeat
+*/

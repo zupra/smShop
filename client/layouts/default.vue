@@ -20,9 +20,11 @@
     //-   name="cartUpdate"
     //-   :key="totalQty"
     //- )
-    .CART.flex.y_start
+    .CART.flex.y_start(
+      @click="showModal=true"
+    )
       svg(
-        xmlns='http://www.w3.org/2000/svg', width='32', height='32', viewBox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round', @click="showModal=true"
+        xmlns='http://www.w3.org/2000/svg', width='32', height='32', viewBox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round'
       )
         circle(cx='9', cy='21', r='1')
         circle(cx='20', cy='21', r='1')
@@ -39,7 +41,7 @@
     .flex.y_center(
       slot="title"
     ) 
-      .btn.lg.blue(
+      .btn.xl.outline.green(
         @click="modalPosition == 'toRight' ? modalPosition='toCenter' : modalPosition='toRight'"
         v-text="modalPosition == 'toRight' ? '« По центру' : 'Справа »'"
       )
@@ -49,11 +51,11 @@
     .flex.x_sb.y_center(
       slot="actions"
     )
-      .btn.blue.xl(
+      .btn.xl(
         @click="showModal = false; $router.push('/checkout')"
       ) Оформить
 
-      .btn.blue.xl(
+      .btn.xl.grey(
         @click="showModal = false"
       ) Закрыть
       

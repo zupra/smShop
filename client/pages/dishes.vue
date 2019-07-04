@@ -24,14 +24,16 @@
               | &emsp;
               b {{Dish.price}} ₽
               | &emsp;
-              .btn._icon.outline.orange(
+              .btn._icon.orange(
                 :disabled="!Dish.qty"
                 @click="(Dish.qty > 1) ? minusItem(Dish) : delItem(Dish)"
-              ) ➖
+              )
+                img(src="~static/icon/minus.svg")
               b &nbsp; {{ !Dish.qty ? 0 : Dish.qty }} &nbsp;
-              .btn._icon.outline.orange(
+              .btn._icon.orange(
                 @click="addToCart(Dish)"
-              ) ➕
+              )
+                img(src="~static/icon/plus.svg")
 
 
   //-
