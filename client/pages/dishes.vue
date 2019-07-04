@@ -2,7 +2,7 @@
 .Wrap
   .flex
     div
-      h1 Dishes
+      //- h1 Dishes
       .flex_wr.x_center
         .Dish.flex_col.m_2(
           v-for="Dish in dishes"
@@ -24,10 +24,13 @@
               | &emsp;
               b {{Dish.price}} ₽
               | &emsp;
-              
-              .btn.circle.orange(
-                @click="$store.commit('cart/addItem', Dish)"
-              ) Заказать
+              .btn._icon.outline.orange(
+                @click=""
+              ) ➖
+              b &nbsp; {{ !Dish.qty ? 0 : Dish.qty }} &nbsp;
+              .btn._icon.outline.orange(
+                @click="addToCart(Dish)"
+              ) ➕
 
 
   //-
@@ -40,13 +43,9 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import Strapi from 'strapi-sdk-javascript/build/main'
-
+import { mapGetters, mapMutations } from 'vuex'
 // import Modal from '~/components/Modal/Modal.vue'
 
-const apiUrl = process.env.API_URL || 'http://localhost:1337'
-const strapi = new Strapi(apiUrl)
 export default {
   // data() {
   //   return {}
@@ -54,26 +53,21 @@ export default {
   // components: {
   //   Modal
   // },
-  async asyncData({ app }) {
-    const dishes = await strapi.request('post', '/graphql', {
-      data: {
-        query: `
-        query {
-          dishes {
-            id
-            name
-            description
-            price
-          }
-        }
-        `
-      }
+
+  computed: {
+    ...mapGetters({
+      dishes: 'cart/items',
+      totalPrice: 'cart/totalPrice',
+      totalQty: 'cart/totalQty'
     })
-    return { ...dishes.data }
   },
   methods: {
     ...mapMutations({
       addToCart: 'cart/addItem'
+
+      // minusItem: 'cart/minusItem',
+      // delItem: 'cart/delItem',
+      // emptyCart: 'cart/emptyList'
     })
   }
 }

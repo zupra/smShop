@@ -20,15 +20,14 @@
     //-   name="cartUpdate"
     //-   :key="totalQty"
     //- )
-    svg(
-      xmlns='http://www.w3.org/2000/svg',
-      viewBox='0 0 193.056 193.056',
-      width="32" height="32",
-      fill="mediumseagreen"
-      @click="showModal = true"
-    )
-      path(d='M163.972,147.499H63.367l-2.13-8.714H175.25l16.571-72.198l-14.832-3.406l-13.863,60.387H57.893l-10.056-55.55L36.184,0H1.235v15.217h22.116l5.694,33.234l-0.211,0.038l16.351,90.298h0.383l2.214,9.049c-10.774,1.798-19.021,11.164-19.021,22.44c0,12.562,10.218,22.78,22.777,22.78c12.562,0,22.78-10.218,22.78-22.78c0-2.65-0.479-5.192-1.319-7.558h69.512c-0.837,2.369-1.319,4.91-1.319,7.558c0,12.562,10.216,22.78,22.775,22.78c12.562,0,22.78-10.218,22.78-22.78C186.754,157.718,176.534,147.499,163.972,147.499z M51.54,177.837c-4.17,0-7.56-3.393-7.56-7.563c0-4.167,3.391-7.558,7.56-7.558s7.563,3.394,7.563,7.558C59.103,174.446,55.71,177.837,51.54,177.837z M163.972,177.84c-4.169,0-7.558-3.393-7.558-7.563c0-4.167,3.391-7.558,7.558-7.558c4.172,0,7.563,3.393,7.563,7.558C171.537,174.446,168.144,177.84,163.972,177.84z')
-    | {{totalQty}} &emsp;
+    .CART.flex.y_start
+      svg(
+        xmlns='http://www.w3.org/2000/svg', width='32', height='32', viewBox='0 0 24 24', fill='none', stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-linejoin='round', @click="showModal=true"
+      )
+        circle(cx='9', cy='21', r='1')
+        circle(cx='20', cy='21', r='1')
+        path(d='M1 1h4l3 13a2 2 0 0 0 2 1.61h10a2 2 0 0 0 2-1.61L23 6H12')
+      .CART_totalQty {{totalQty}}
 
   <nuxt />
 
@@ -45,6 +44,7 @@
         v-text="modalPosition == 'toRight' ? '« По центру' : 'Справа »'"
       )
     Cart
+
     //- slot="actions"
     .flex.x_sb.y_center(
       slot="actions"
@@ -60,9 +60,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import Modal from '~/components/Modal/Modal.vue'
 import Cart from '~/components/@Item/Cart.vue'
+
+import Strapi from 'strapi-sdk-javascript/build/main'
+const apiUrl = process.env.API_URL || 'http://localhost:1337'
+const strapi = new Strapi(apiUrl)
 
 export default {
   components: {
@@ -98,7 +102,34 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      totalQty: 'cart/quantity'
+      totalQty: 'cart/totalQty'
+    })
+  },
+
+  async fetch({ store }) {
+    const { data } = await strapi.request('post', '/graphql', {
+      data: {
+        query: `
+        query {
+          dishes {
+            id
+            name
+            description
+            price
+          }
+        }
+        `
+      }
+    })
+    store.commit('cart/setItems', data.dishes)
+  },
+
+  methods: {
+    ...mapMutations({
+      addToCart: 'cart/addItem',
+      minusItem: 'cart/minusItem',
+      delItem: 'cart/delItem',
+      emptyCart: 'cart/emptyList'
     })
   }
 }
@@ -112,9 +143,26 @@ export default {
   width 100%
   z-index 5
   height 3em
+  padding 0 1em
   background #2a8ed1
   box-shadow 0 1px 8px rgba(0, 0, 0, .2), 0 3px 4px rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12)
   color #FFF
   a
     color #FFF
+
+.CART
+  cursor pointer
+  &:hover
+    svg
+      stroke-width 3
+    .CART_totalQty
+      background #ff5722
+  &_totalQty
+    background #9b59b6
+    width 2em
+    height 2em
+    border-radius 2em
+    display flex
+    justify-content center
+    align-items center
 </style>

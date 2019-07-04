@@ -3,29 +3,29 @@
 .Cart
   .CartList
     .CartItem.flex.y_center.x_sb(
-      v-for="dish in inCart"
+      v-for="Dish in inCart"
     )
-      .fr_50.lh_1 {{dish.name}}
+      .fr_50.lh_1 {{Dish.name}}
       | &nbsp;
-      .bold {{dish.price}} ₽
+      .bold {{Dish.price}} ₽
       | &emsp;
 
       // Plus/Minus
       .flex.y_center
         .CartItem_qtyMinus(
-          :disabled="dish.quantity === 1"
-          @click="minusItem(dish)"
+          :disabled="Dish.quantity === 1"
+          @click="(Dish.qty > 1) ? minusItem(Dish) : ''"
         )
-        .CartItem_qtyResult {{dish.quantity}}
+        .CartItem_qtyResult {{Dish.qty}}
         .CartItem_qtyPlus(
-          @click="addToCart(dish)"
+          @click="addToCart(Dish)"
         )
       | &emsp;
-      .CartItem_itemTotalPrice {{dish.price * dish.quantity}} ₽
+      .CartItem_itemTotalPrice {{Dish.price * Dish.qty}} ₽
 
       | &emsp;
       //- .btn.uped.red(
-      //-   @click="delItem(dish)"
+      //-   @click="delItem(Dish)"
       //- ) ✖
       Dropdown(
         openTo="toLeft"
@@ -37,7 +37,7 @@
         .Dropdown_body
           p Удалить ?
           .sm.btn.fill.red(
-            @click="delItem(dish); $el.click()"
+            @click="delItem(Dish); $el.click()"
           ) Удалить
   .CartTotal.flex.x_end.mt_3
     | Итого: &nbsp;
@@ -57,17 +57,17 @@ export default {
   },
   computed: {
     ...mapGetters({
-      totalPrice: 'cart/price',
-      inCart: 'cart/items',
-      totalQty: 'cart/quantity'
+      inCart: 'cart/inCart',
+      totalPrice: 'cart/totalPrice',
+      totalQty: 'cart/totalQty'
     })
   },
   methods: {
     ...mapMutations({
       addToCart: 'cart/addItem',
-      minusItem: 'cart/minusItem',
       delItem: 'cart/delItem',
-      emptyCart: 'cart/emptyList'
+      minusItem: 'cart/minusItem'
+      // emptyCart: 'cart/emptyList'
     })
   }
 }

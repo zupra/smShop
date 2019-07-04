@@ -1,3 +1,4 @@
+import Vue from 'vue'
 export const state = () => ({
   items: []
 })
@@ -7,37 +8,13 @@ export const mutations = {
     state.items = items
   },
   addItem(state, item) {
-    const record = state.items.find(i => i.id === item.id)
-
-    if (!record) {
-      state.items.push({
-        quantity: 1,
-        ...item
-      })
-    } else {
-      record.quantity++
-    }
+    item.qty ? item.qty++ : Vue.set(item, 'qty', +1)
   },
   minusItem(state, item) {
-    const record = state.items.find(i => i.id === item.id)
-
-    if (record.quantity > 1) {
-      record.quantity--
-    }
-    /*
-    else {
-      const index = state.items.findIndex(i => i.id === item.id)
-      state.items.splice(index, 1)
-    }
-    */
+    item.qty -= 1
   },
   delItem(state, item) {
-    const index = state.items.findIndex(i => i.id === item.id)
-    state.items.splice(index, 1)
-  },
-  emptyList(state) {
-    state.items = []
-    // Cookies.set('card', state.items)
+    Vue.delete(item, 'qty')
   }
 }
 
@@ -45,16 +22,15 @@ export const getters = {
   items: state => {
     return state.items
   },
-  price: state => {
-    return state.items.reduce(
-      (accumulator, item) => accumulator + item.price * item.quantity,
-      0
-    )
+  inCart: state => {
+    return state.items.filter(i => i.qty)
   },
-  quantity: state => {
-    return state.items.reduce(
-      (accumulator, item) => accumulator + item.quantity,
-      0
-    )
+  totalQty: (state, { inCart }) => {
+    return inCart.reduce((n, inCart) => inCart.qty + n, 0)
+  },
+  totalPrice: (state, { inCart }) => {
+    return inCart
+      .reduce((n, inCart) => inCart.price * inCart.qty + n, 0)
+      .toFixed(2)
   }
 }

@@ -31,7 +31,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/vuex-persist.js'
+    // '~/plugins/vuex-persist.js'
+    { src: '~/plugins/vuex-persist.js', mode: 'client' }
   ],
   /*
    ** Nuxt.js modules
