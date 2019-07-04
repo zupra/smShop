@@ -5,4 +5,10 @@
  * to customize this service
  */
 
-module.exports = {};
+module.exports = {
+  /*
+  create(values) {
+    return strapi.query(Order).create(values);
+  }
+  */
+};

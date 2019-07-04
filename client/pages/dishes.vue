@@ -25,7 +25,8 @@
               b {{Dish.price}} ₽
               | &emsp;
               .btn._icon.outline.orange(
-                @click=""
+                :disabled="!Dish.qty"
+                @click="(Dish.qty > 1) ? minusItem(Dish) : delItem(Dish)"
               ) ➖
               b &nbsp; {{ !Dish.qty ? 0 : Dish.qty }} &nbsp;
               .btn._icon.outline.orange(
@@ -63,10 +64,9 @@ export default {
   },
   methods: {
     ...mapMutations({
-      addToCart: 'cart/addItem'
-
-      // minusItem: 'cart/minusItem',
-      // delItem: 'cart/delItem',
+      addToCart: 'cart/addItem',
+      minusItem: 'cart/minusItem',
+      delItem: 'cart/delItem'
       // emptyCart: 'cart/emptyList'
     })
   }

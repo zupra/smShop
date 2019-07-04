@@ -9,20 +9,20 @@
       |  ₽
 
   hr
-
   Cart
-
   hr
-
-  label.field
+  label.field.mr_3
     input.xl(
+      placeholder="ФИО"
+    )
+  label.field.mr_5
+    input.xl(
+      placeholder="address"
       v-model="address"
     )
-
-  .btn(
+  .btn.xl(
     @click="handleSubmit()"
-  ) handleSubmit
-
+  ) Отправить заказ
 
 
 </template>
@@ -43,17 +43,17 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      totalPrice: 'cart/price',
-      inCart: 'cart/items',
-      totalQty: 'cart/quantity'
+      inCart: 'cart/inCart',
+      totalPrice: 'cart/totalPrice',
+      totalQty: 'cart/totalQty'
     })
   },
   methods: {
     ...mapMutations({
-      addToCart: 'cart/addItem',
-      minusItem: 'cart/minusItem',
-      delItem: 'cart/delItem',
-      emptyCart: 'cart/emptyList'
+      // addToCart: 'cart/addItem',
+      // minusItem: 'cart/minusItem',
+      // delItem: 'cart/delItem',
+      // emptyCart: 'cart/emptyList'
     }),
     async handleSubmit() {
       try {
