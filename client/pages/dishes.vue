@@ -5,9 +5,13 @@
       //- h1 Dishes
       .flex_wr.x_center
         .Dish.flex_col.m_2(
-          v-for="Dish in dishes"
+          v-for="(Dish,idx) in dishes"
+          :key="Dish.id"
         )
-          .IMG
+          .IMG(
+            @click="openModal_ProductItem(idx)"
+            style="height: 220px"
+          )
             //-
             svg(
               viewBox="0 0 36 36"
@@ -35,7 +39,29 @@
               )
                 img(src="~static/icon/plus.svg")
 
+  Modal(
+    :show.sync="showModal_ProductItem"
+  )
+    ProductItem(
+      :arrItems="dishes"
+      :itemIdx="itemIdx"
+    )
+    .flex.x_sb.y_center(
+      slot="actions"
+    )
+      .flex.mx_2
+        .btn.circle(
+          @click="prev"
+        ) « Туда
+        | &emsp;
+        .btn.circle(
+          @click="next"
+        ) Сюда »
 
+      .btn.lg(
+        @click="showModal_ProductItem = false"
+      ) Закрыть
+    
   //-
   svg(xmlns="http://www.w3.org/2000/svg", style="display: none")
     symbol(id="icon-img")
@@ -47,24 +73,43 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-// import Modal from '~/components/Modal/Modal.vue'
+import Modal from '~/components/Modal/Modal.vue'
+import ProductItem from '~/components/@Item/ProductItem.vue'
 
 export default {
-  // data() {
-  //   return {}
-  // },
-  // components: {
-  //   Modal
-  // },
+  components: {
+    Modal,
+    ProductItem
+  },
+  data() {
+    return {
+      showModal_ProductItem: false,
+      itemIdx: 0
+    }
+  },
 
   computed: {
     ...mapGetters({
       dishes: 'cart/items',
       totalPrice: 'cart/totalPrice',
       totalQty: 'cart/totalQty'
-    })
+    }),
+    maxIdx() {
+      return this.dishes.length - 1
+    }
   },
   methods: {
+    // itemIdx
+    openModal_ProductItem(idx) {
+      this.showModal_ProductItem = true
+      this.itemIdx = idx
+    },
+    prev() {
+      this.itemIdx = this.itemIdx ? this.itemIdx - 1 : this.maxIdx
+    },
+    next() {
+      this.itemIdx = this.itemIdx >= this.maxIdx ? 0 : this.itemIdx + 1
+    },
     ...mapMutations({
       addToCart: 'cart/addItem',
       minusItem: 'cart/minusItem',
@@ -92,7 +137,6 @@ export default {
 .IMG
   background #CCC // #daae9b
   width 100% // 320px
-  height 220px
   display flex
   &_icon
     margin auto

@@ -51,7 +51,7 @@
     .flex.x_sb.y_center(
       slot="actions"
     )
-      .btn.xl(
+      .btn.xl.circle.green(
         @click="showModal = false; $router.push('/checkout')"
       ) Оформить
 

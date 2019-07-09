@@ -1,12 +1,11 @@
-$size_Mod()
-  @media (min-width: 500px)
-    &.sm
-      font-size .6rem
-    &.lg
-      font-size 1rem
-    &.xl
-      font-size 1.2rem
-
+// $size_Mod()
+// @media (min-width: 500px)
+// &.sm
+// font-size .6rem
+// &.lg
+// font-size 1rem
+// &.xl
+// font-size 1.2rem
 $CLR_fill()
   &.red
     background $red
@@ -21,16 +20,17 @@ $CLR_fill()
     &:hover
       background $orange - 10%
   &.grey
-    background #7f8c8d
+    background #EEE
+    color #222
     &:hover
-      background #7f8c8d - 10%
+      background #EEE - 10%
 
 // OUTLINE
 item-btn(clr)
   color clr
-  border-color clr
+  border-color clr - 20
   &:hover
-    background clr + 10
+    background clr
 
 $CLR_outline()
   &.red
@@ -90,13 +90,13 @@ input, textarea, select
 // BASE FormEl
 .btn, button, input, textarea, select
   // border-radius .4rem
-  font-family sans-serif
+  // line-height 1
+  font-family "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
   border 2px solid
   font-size .8rem
-  line-height 1
   height 2em
   padding 0 .7em
-  $size_Mod()
+  // $size_Mod()
 
 // =============== BASE Btn ====================
 .btn
@@ -112,9 +112,11 @@ input, textarea, select
 
 $outline_Mod()
   &.outline
+    // ! fix font
+    padding-bottom .15em
+    font-family "Oswald", sans-serif
     border-radius .3rem
     background-color #FFF
-    font-family "Oswald", sans-serif
     letter-spacing .03em
     item-btn($blue)
     $CLR_outline()
@@ -135,10 +137,11 @@ $outline_Mod()
     width 2em
     border-radius 50%
     // img
-    //   height 1.2em
+    // height 1.2em
   $outline_Mod()
   &.circle
     border-radius 3em
+    padding 0 .9em
 
 /*
 .i_plus
@@ -146,3 +149,11 @@ $outline_Mod()
 .i_minus
   background-image url('~static/icon/minus.svg') center no-repeat
 */
+.sm
+  font-size .6rem
+
+.lg
+  font-size 1rem
+
+.xl
+  font-size 1.2rem

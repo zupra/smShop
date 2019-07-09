@@ -20,20 +20,26 @@
         .m_1(class=`btn outline ${clr} ${size}`) #{clr} #{size}
 
 
-  h2 outline circle
+  h2.mt_3 outline circle
   each clr in ['BASE','red','green','orange']
     div
       each size in ['xl','lg','','sm']
         .m_1(class=`btn outline circle ${clr} ${size}`) #{clr} #{size}
 
-  h2 filled
-  each clr in ['BASE','red','green','orange']
+  h2.mt_3 filled
+  each clr in ['BASE','red','green','orange','grey']
     div
       each size in ['xl','lg','','sm']
         .m_1(class=`btn ${clr} ${size}`) #{clr} #{size}
 
 
-  h2 Icon
+  h2.mt_3 filled circle
+  each clr in ['BASE','red','green','orange','grey']
+    div
+      each size in ['xl','lg','','sm']
+        .m_1(class=`btn circle ${clr} ${size}`) #{clr} #{size}
+
+  h2.mt_3 Icon
   each clr in ['','red','green','orange']
     div
       each size in ['xl','lg','','sm']

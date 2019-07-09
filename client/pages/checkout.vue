@@ -56,6 +56,7 @@ export default {
       // emptyCart: 'cart/emptyList'
     }),
     async handleSubmit() {
+      // debugger
       try {
         await strapi.createEntry('orders', {
           address: this.address,

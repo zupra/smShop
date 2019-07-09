@@ -11,9 +11,10 @@
       slot
     .M__actions
       slot(name='actions')
-        button.btn.blue.xl(
-          @click='close'
-        ) Закрыть
+        .flex.x_end
+          button.btn.blue.lg(
+            @click='close'
+          ) Закрыть
 
 </template>
 
@@ -65,9 +66,7 @@ $bg = #f1f1f1
     cursor pointer
     background rgba(#444 .7)
     overflow hidden
-    overflow-y overlay // auto
-    // overflow-y: scroll;
-    // -webkit-overflow-scrolling: touch;
+    overflow-y overlay
   &-Card
     // reset rootOverlay
     cursor auto
@@ -85,33 +84,28 @@ $bg = #f1f1f1
   &.toRight
     // overflow overlay
     // padding 0 1em 1em
-    max-width 460px
     // FIX
     align-self start
     min-height 100%
+    // SELF
+    max-width 460px
     animation anim_toRight .1s .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
     margin-left auto
     transform translateX(100%)
+
+// all section
+.Modal-Card > *
+  padding 1rem
 
 .M
   &__title
     font-size 1.4rem
     line-height 1.3
-    padding .75rem 1.5rem
-    // border-radius .2em 0 0
-  &__slot_Title
-    padding 1rem
   &__body
-    padding 1rem 1.5rem
-    // background #fbfcfd //#f7f7f7
     box-shadow 0 0 1em #CCC inset
-    // line-height 1.2rem
+    // overflow
     max-height calc(100vh - 140px)
-    overflow-y scroll
-  &__actions
-    // padding: .75rem 1.5rem 1.2rem
-    text-align right
-    padding 1rem 1.2rem
+    overflow-y auto
 
 @keyframes anim_toCenter
   to
