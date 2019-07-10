@@ -1,3 +1,4 @@
+// https://nuxtjs.org/guide/typescript
 export default {
   mode: 'universal',
   /*
@@ -58,3 +59,4 @@ export default {
     extend(config, ctx) {}
   }
 }
+

@@ -25,7 +25,7 @@ export default {
     }
   },
   // components: {}
-  async asyncData({ app }) {
+  async asyncData() {
     const categories = await strapi.request('post', '/graphql', {
       data: {
         query: `

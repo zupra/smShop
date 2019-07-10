@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  //- pre {{arrItems[currIdx]}}
+  pre {{currItem}}
   .IMG(
     style="height:400px"
   )
@@ -11,8 +11,8 @@ div
       fill="#FFF"
     ).IMG_icon
       use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#icon-img')
-  h3.mt_3 {{arrItems[currIdx].name}}
-  div {{arrItems[currIdx].description}}
+  h3.mt_3 {{currItem && currItem.name}}
+  div {{currItem && currItem.description}}
   
   //- .btn(
   //-   @click="prev"
@@ -23,6 +23,7 @@ div
   //- ) next
   
 </template>
+
 <script>
 export default {
   props: {
@@ -40,11 +41,17 @@ export default {
       currIdx: this.itemIdx
     }
   },
+  computed: {
+    currItem() {
+      return this.arrItems[this.currIdx]
+    }
+  },
   watch: {
     itemIdx(newVal) {
       this.currIdx = newVal
     }
   }
+
   /*
   computed: {
     maxIdx() {
@@ -64,3 +71,18 @@ export default {
   */
 }
 </script>
+
+<test_TS>
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import Product from '../../models/Product'
+@Component
+export default class ProductItem extends Vue {
+  @Prop({ type: Array, required: true }) arrItems!: Product[]
+  @Prop({ type: Number, default: 0 }) itemIdx!: number
+  currIdx = this.itemIdx
+  @Watch('itemIdx')
+  onItemIdxChanged(val: number) {
+    this.currIdx = val
+  }
+}
+</test_TS>

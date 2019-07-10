@@ -29,7 +29,7 @@
         circle(cx='9', cy='21', r='1')
         circle(cx='20', cy='21', r='1')
         path(d='M1 1h4l3 13a2 2 0 0 0 2 1.61h10a2 2 0 0 0 2-1.61L23 6H12')
-      .CART_totalQty {{totalQty}}
+      b.CART_totalQty {{totalQty}}
 
   <nuxt />
 
@@ -160,7 +160,7 @@ export default {
     .CART_totalQty
       background #ff5722
   &_totalQty
-    background #9b59b6
+    background #e94a35 // #9b59b6
     width 2em
     height 2em
     border-radius 2em

@@ -75,7 +75,11 @@
 import { mapGetters, mapMutations } from 'vuex'
 import Modal from '~/components/Modal/Modal.vue'
 import ProductItem from '~/components/@Item/ProductItem.vue'
-
+/*
+import Strapi from 'strapi-sdk-javascript/build/main'
+const apiUrl = process.env.API_URL || 'http://localhost:1337'
+const strapi = new Strapi(apiUrl)
+*/
 export default {
   components: {
     Modal,
@@ -85,9 +89,28 @@ export default {
     return {
       showModal_ProductItem: false,
       itemIdx: 0
+      // dishes: this.$store.getters['cart/items']
     }
   },
-
+  /*
+  async asyncData() {
+    const dishes = await strapi.request('post', '/graphql', {
+      data: {
+        query: `
+        query {
+          dishes {
+            id
+            name
+            description
+            price
+          }
+        }
+        `
+      }
+    })
+    return { ...dishes.data }
+  },
+  */
   computed: {
     ...mapGetters({
       dishes: 'cart/items',
