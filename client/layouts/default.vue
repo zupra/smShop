@@ -66,9 +66,9 @@ import { mapGetters, mapMutations } from 'vuex'
 import Modal from '~/components/Modal/Modal.vue'
 import Cart from '~/components/@Item/Cart.vue'
 
-import Strapi from 'strapi-sdk-javascript/build/main'
-const apiUrl = process.env.API_URL || 'http://localhost:1337'
-const strapi = new Strapi(apiUrl)
+// import Strapi from 'strapi-sdk-javascript/build/main'
+// const apiUrl = process.env.API_URL || 'http://localhost:1337'
+// const strapi = new Strapi(apiUrl)
 
 export default {
   components: {
@@ -108,23 +108,23 @@ export default {
     })
   },
 
-  async fetch({ store }) {
-    const { data } = await strapi.request('post', '/graphql', {
-      data: {
-        query: `
-        query {
-          dishes {
-            id
-            name
-            description
-            price
-          }
-        }
-        `
-      }
-    })
-    store.commit('cart/setItems', data.dishes)
-  },
+  // async fetch({ store }) {
+  //   const { data } = await strapi.request('post', '/graphql', {
+  //     data: {
+  //       query: `
+  //       query {
+  //         dishes {
+  //           id
+  //           name
+  //           description
+  //           price
+  //         }
+  //       }
+  //       `
+  //     }
+  //   })
+  //   store.commit('cart/setItems', data.dishes)
+  // },
 
   methods: {
     ...mapMutations({
