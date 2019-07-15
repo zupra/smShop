@@ -33,7 +33,12 @@
                 @click="(Dish.qty > 1) ? minusItem(Dish) : delItem(Dish)"
               )
                 img(src="~static/icon/minus.svg")
-              b &nbsp; {{ !Dish.qty ? 0 : Dish.qty }} &nbsp;
+              transition(name="updateNumber")
+                b.Dish_qty(
+                  :key="Dish.qty"
+                  v-text="!Dish.qty ? 0 : Dish.qty"
+                )
+              //- b &nbsp; {{ !Dish.qty ? 0 : Dish.qty }} &nbsp;
               .btn._icon.orange(
                 @click="addToCart(Dish)"
               )
@@ -174,6 +179,9 @@ export default {
     height 2em
   &_description
     height 4em
+  &_qty
+    width 2em
+    text-align center
 
 .IMG
   background #CCC // #daae9b

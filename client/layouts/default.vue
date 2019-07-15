@@ -29,7 +29,10 @@
         circle(cx='9', cy='21', r='1')
         circle(cx='20', cy='21', r='1')
         path(d='M1 1h4l3 13a2 2 0 0 0 2 1.61h10a2 2 0 0 0 2-1.61L23 6H12')
-      b.CART_totalQty {{totalQty}}
+      .CART_totalQty
+        transition(name="updateNumber")
+          b(:key="totalQty") {{totalQty}}
+        
 
   <nuxt />
 
@@ -167,4 +170,19 @@ export default {
     display flex
     justify-content center
     align-items center
+
+.updateNumber-enter-active
+  animation updateNumber .3s
+
+.updateNumber-leave-active
+  opacity 0
+  position absolute
+
+@keyframes updateNumber
+  from
+    opacity 0
+    transform translate3d(0, .5em, 0)
+  to
+    opacity 1
+    transform translate3d(0, 0, 0)
 </style>
