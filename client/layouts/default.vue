@@ -30,7 +30,7 @@
         circle(cx='20', cy='21', r='1')
         path(d='M1 1h4l3 13a2 2 0 0 0 2 1.61h10a2 2 0 0 0 2-1.61L23 6H12')
       .CART_totalQty
-        transition(name="updateNumber")
+        transition(:name="`updateNumber${numberUpdate_dir}`")
           b(:key="totalQty") {{totalQty}}
         
 
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import Modal from '~/components/Modal/Modal.vue'
 import Cart from '~/components/@Item/Cart.vue'
 
@@ -106,6 +106,7 @@ export default {
     ]
   }),
   computed: {
+    ...mapState('cart', { numberUpdate_dir: state => state.numberUpdate_dir }),
     ...mapGetters({
       totalQty: 'cart/totalQty'
     })
@@ -141,6 +142,13 @@ export default {
 </script>
 
 <style lang="stylus">
+
+topNav_black()
+  background #2a8ed1
+  box-shadow 0 1px 8px rgba(0, 0, 0, .2), 0 3px 4px rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12)
+  color #FFF
+  a
+    color #FFF
 #topNav
   position fixed
   top 0
@@ -149,21 +157,22 @@ export default {
   z-index 5
   height 3em
   padding 0 1em
-  background #2a8ed1
-  box-shadow 0 1px 8px rgba(0, 0, 0, .2), 0 3px 4px rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12)
-  color #FFF
-  a
-    color #FFF
+  font-size 1.2rem
+  line-height 1
+
+  background rgba(#FFF, .94)
+  box-shadow: 0 1px 8px rgba(0,0,0,.25);
+
 
 .CART
   cursor pointer
   &:hover
     svg
       stroke-width 3
+      stroke: darkgoldenrod;
     .CART_totalQty
       background #ff5722
   &_totalQty
-    background #e94a35 // #9b59b6
     width 2em
     height 2em
     border-radius 2em
@@ -171,17 +180,31 @@ export default {
     justify-content center
     align-items center
 
-.updateNumber-enter-active
-  animation updateNumber .3s
+    background #e94a35 // #9b59b6
+    color #FFF
 
-.updateNumber-leave-active
+.updateNumberUp-enter-active
+  animation updateNumber_up .3s
+
+.updateNumberDown-enter-active
+  animation updateNumber_down .3s
+
+.updateNumberUp-leave-active, .updateNumberDown-leave-active
   opacity 0
   position absolute
 
-@keyframes updateNumber
+@keyframes updateNumber_up
   from
     opacity 0
-    transform translate3d(0, .5em, 0)
+    transform translate3d(0, .7em, 0)
+  to
+    opacity 1
+    transform translate3d(0, 0, 0)
+
+@keyframes updateNumber_down
+  from
+    opacity 0
+    transform translate3d(0, -.7em, 0)
   to
     opacity 1
     transform translate3d(0, 0, 0)

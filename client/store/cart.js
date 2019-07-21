@@ -1,6 +1,7 @@
 import Vue from 'vue'
 export const state = () => ({
-  items: []
+  items: [],
+  numberUpdate_dir: 'Up'
 })
 
 export const mutations = {
@@ -8,9 +9,11 @@ export const mutations = {
     state.items = items
   },
   addItem(state, item) {
+    state.numberUpdate_dir = 'Up'
     item.qty ? item.qty++ : Vue.set(item, 'qty', +1)
   },
   minusItem(state, item) {
+    state.numberUpdate_dir = 'Down'
     item.qty -= 1
   },
   delItem(state, item) {

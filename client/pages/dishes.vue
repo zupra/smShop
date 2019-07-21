@@ -2,24 +2,31 @@
 .Wrap
   .flex
     div
-      //- h1 Dishes
+      h1.center Dishes
       .flex_wr.x_center
-        .Dish.flex_col.m_2(
+        .Dish.flex_col.m_3(
           v-for="(Dish,idx) in dishes"
           :key="Dish.id"
         )
-          .IMG(
+
+          //-
+            .IMG(
+              @click="openModal_ProductItem(idx)"
+              style="height: 220px"
+            )
+              svg(
+                viewBox="0 0 36 36"
+                width="72" 
+                height="72"
+                fill="#FFF"
+              ).IMG_icon
+                use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#icon-img')
+          img.IMG(
             @click="openModal_ProductItem(idx)"
-            style="height: 220px"
+            :src="`https://picsum.photos/id/${idx+10}/300/200`"
           )
-            //-
-            svg(
-              viewBox="0 0 36 36"
-              width="72" 
-              height="72"
-              fill="#FFF"
-            ).IMG_icon
-              use(xmlns:xlink='http://www.w3.org/1999/xlink', xlink:href='#icon-img')
+            
+
           .m_2.mb_3
             h4.Dish_name {{Dish.name}}
             .lh_1.Dish_description {{Dish.description}}
@@ -33,7 +40,7 @@
                 @click="(Dish.qty > 1) ? minusItem(Dish) : delItem(Dish)"
               )
                 img(src="~static/icon/minus.svg")
-              transition(name="updateNumber")
+              transition(:name="`updateNumber${numberUpdate_dir}`")
                 b.Dish_qty(
                   :key="Dish.qty"
                   v-text="!Dish.qty ? 0 : Dish.qty"
@@ -77,7 +84,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import Modal from '~/components/Modal/Modal.vue'
 import ProductItem from '~/components/@Item/ProductItem.vue'
 /**/
@@ -94,9 +101,23 @@ export default {
     return {
       showModal_ProductItem: false,
       itemIdx: 0
+      // ...mapState({ isUp: 'cart/number_up' })
       // dishes: this.$store.getters['cart/items']
     }
   },
+  computed: {
+    // ...mapState(['number_up']),
+    ...mapState('cart', { numberUpdate_dir: state => state.numberUpdate_dir }),
+    ...mapGetters({
+      dishes: 'cart/items',
+      totalPrice: 'cart/totalPrice',
+      totalQty: 'cart/totalQty'
+    }),
+    maxIdx() {
+      return this.dishes.length - 1
+    }
+  },
+
   async fetch({ store }) {
     const { data } = await strapi.request('post', '/graphql', {
       data: {
@@ -134,16 +155,7 @@ export default {
     return { ...dishes.data }
   },
   */
-  computed: {
-    ...mapGetters({
-      dishes: 'cart/items',
-      totalPrice: 'cart/totalPrice',
-      totalQty: 'cart/totalQty'
-    }),
-    maxIdx() {
-      return this.dishes.length - 1
-    }
-  },
+
   methods: {
     // itemIdx
     openModal_ProductItem(idx) {
@@ -169,11 +181,12 @@ export default {
 <style lang="stylus">
 .Dish
   background #FFF
-  flex 2 0 250px
+  flex 2 0 260px
   transition box-shadow .3s, transform .3s
-  box-shadow 0 1px 3px rgba(0, 0, 0, .2), 0 1px 1px rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
+  // box-shadow 0 1px 3px rgba(0, 0, 0, .2), 0 1px 1px rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
   &:hover
-    box-shadow 0 4px 5px -2px rgba(0, 0, 0, .2), 0 7px 10px 1px rgba(0, 0, 0, .14), 0 2px 16px 1px rgba(0, 0, 0, .12)
+    // box-shadow 0 4px 5px -2px rgba(0, 0, 0, .2), 0 7px 10px 1px rgba(0, 0, 0, .14), 0 2px 16px 1px rgba(0, 0, 0, .12)
+    box-shadow: rgba(45,45,45,0.03) 0 2px 2px, rgba(49,49,49,0.03) 0 4px 4px, rgba(42,42,42,0.03) 0 8px 8px, rgba(32,32,32,0.03) 0 16px 16px, rgba(49,49,49,0.03) 0 32px 32px, rgba(35,35,35,0.03) 0 64px 64px;
     transform translate(0, -4px)
   &_name
     height 2em
