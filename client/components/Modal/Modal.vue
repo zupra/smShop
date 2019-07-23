@@ -89,7 +89,7 @@ $bg = #f1f1f1
     min-height 100%
     // SELF
     max-width 460px
-    animation anim_toRight .1s .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
+    animation anim_toRight .3s cubic-bezier(.25, .46, .45, .94) forwards // ease-in
     margin-left auto
     transform translateX(100%)
 

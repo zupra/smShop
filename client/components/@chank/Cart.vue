@@ -39,27 +39,19 @@
           .sm.btn.fill.red(
             @click="delItem(Dish); $el.click()"
           ) Удалить
-  .CartTotal.flex.x_end.mt_3
-    | Итого: &nbsp;
-    b {{totalQty}}&nbsp;
-    | шт /&nbsp;
-    b {{totalPrice}} &nbsp;
-    | ₽ &emsp;
-
 </template>
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 import Dropdown from '~/components/Dropdown/Dropdown.vue'
+
 export default {
   components: {
     Dropdown
   },
   computed: {
     ...mapGetters({
-      inCart: 'cart/inCart',
-      totalPrice: 'cart/totalPrice',
-      totalQty: 'cart/totalQty'
+      inCart: 'cart/inCart'
     })
   },
   methods: {
@@ -75,8 +67,7 @@ export default {
 
 <style lang="stylus">
 // .Cart
-.CartTotal
-  font-size 1.4em
+
 
 .CartItem
   padding .7em 0

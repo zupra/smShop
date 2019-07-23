@@ -41,13 +41,15 @@
     :position="modalPosition"
   )
     // slot="title"
-    .flex.y_center(
+    .flex.y_center.x_sb(
       slot="title"
     ) 
       .btn.xl.outline.green(
         @click="modalPosition == 'toRight' ? modalPosition='toCenter' : modalPosition='toRight'"
         v-text="modalPosition == 'toRight' ? '« По центру' : 'Справа »'"
       )
+      CartTotal.brightStr
+
     Cart
 
     //- slot="actions"
@@ -67,8 +69,8 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import Modal from '~/components/Modal/Modal.vue'
-import Cart from '~/components/@Item/Cart.vue'
-
+import Cart from '~/components/@chank/Cart.vue'
+import CartTotal from '~/components/@chank/CartTotal.vue'
 // import Strapi from 'strapi-sdk-javascript/build/main'
 // const apiUrl = process.env.API_URL || 'http://localhost:1337'
 // const strapi = new Strapi(apiUrl)
@@ -76,7 +78,8 @@ import Cart from '~/components/@Item/Cart.vue'
 export default {
   components: {
     Modal,
-    Cart
+    Cart,
+    CartTotal
   },
   data: () => ({
     showModal: false,
@@ -206,6 +209,6 @@ topNav_black()
     opacity 0
     transform translate3d(0, -.7em, 0)
   to
-    opacity 1
+    opacity .8
     transform translate3d(0, 0, 0)
 </style>

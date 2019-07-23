@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Cart from '~/components/@Item/Cart.vue'
+import Cart from '~/components/@chank/Cart.vue'
 import { mapMutations, mapGetters } from 'vuex'
 import Strapi from 'strapi-sdk-javascript/build/main'
 const apiUrl = process.env.API_URL || 'http://localhost:1337'
